@@ -6,6 +6,26 @@
     <title>Creed Aldo | Professional Trader & Lifestyle Influencer</title>
     <meta name="description" content="Creed Aldo - Professional Trader, Fitness Influencer, and Personal Finance Educator. Join the journey to financial freedom.">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://creedaldo.me/">
+    <meta property="og:title" content="Creed Aldo | Professional Trader & Lifestyle Influencer">
+    <meta property="og:description" content="Professional Trader with 28+ verified payouts. BBA Graduate. Join the journey to financial freedom.">
+    <meta property="og:image" content="https://creedaldo.me/assets/images/photo1.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Creed Aldo">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://creedaldo.me/">
+    <meta name="twitter:title" content="Creed Aldo | Professional Trader & Lifestyle Influencer">
+    <meta name="twitter:description" content="Professional Trader with 28+ verified payouts. BBA Graduate. Join the journey to financial freedom.">
+    <meta name="twitter:image" content="https://creedaldo.me/assets/images/photo1.jpg">
+    
+    <!-- Telegram specific -->
+    <meta name="telegram:channel" content="@creedaldo">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
     
@@ -34,10 +54,12 @@
                             900: '#78350f',
                         },
                         dark: {
+                            950: '#050505',
                             900: '#0a0a0a',
                             800: '#111111',
                             700: '#1a1a1a',
                             600: '#222222',
+                            500: '#2a2a2a',
                         }
                     },
                     fontFamily: {
@@ -56,6 +78,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
+    <!-- Swiper for carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -69,7 +95,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: #050505;
             color: #fff;
             overflow-x: hidden;
         }
@@ -85,27 +111,49 @@
         }
         
         .gradient-text {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 25%, #f59e0b 50%, #d97706 75%, #b45309 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
+        .gradient-text-animated {
+            background: linear-gradient(90deg, #fcd34d, #fbbf24, #f59e0b, #d97706, #fbbf24, #fcd34d);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        
         .glow-gold {
-            box-shadow: 0 0 60px rgba(251, 191, 36, 0.3);
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.3), 0 0 100px rgba(251, 191, 36, 0.1);
         }
         
         .glow-text {
-            text-shadow: 0 0 40px rgba(251, 191, 36, 0.5);
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.5), 0 0 80px rgba(251, 191, 36, 0.3);
         }
         
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg, #1a1a1a 0%, #111111 100%);
         }
         
         .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.25);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(251, 191, 36, 0.3), 0 0 40px rgba(251, 191, 36, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.1);
         }
         
         .animate-float {
@@ -113,8 +161,8 @@
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
         }
         
         .animate-pulse-gold {
@@ -122,8 +170,8 @@
         }
         
         @keyframes pulse-gold {
-            0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(251, 191, 36, 0.8); }
+            0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(251, 191, 36, 0.8), 0 0 80px rgba(251, 191, 36, 0.4); }
         }
         
         .line-animation {
@@ -158,13 +206,12 @@
             font-variant-numeric: tabular-nums;
         }
         
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         
         ::-webkit-scrollbar-track {
-            background: #111111;
+            background: #0a0a0a;
         }
         
         ::-webkit-scrollbar-thumb {
@@ -180,15 +227,17 @@
             content: '';
             position: absolute;
             inset: -4px;
-            background: linear-gradient(135deg, #fbbf24, #d97706, #fbbf24);
+            background: linear-gradient(135deg, #fcd34d, #fbbf24, #d97706, #b45309, #fbbf24, #fcd34d);
+            background-size: 300% 300%;
             border-radius: 20px;
             z-index: -1;
-            animation: border-rotate 4s linear infinite;
+            animation: border-rotate 4s ease infinite;
         }
         
         @keyframes border-rotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .noise-overlay {
@@ -199,17 +248,15 @@
             height: 100%;
             pointer-events: none;
             z-index: 1000;
-            opacity: 0.03;
+            opacity: 0.02;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         
         .section-divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
-            opacity: 0.3;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
         }
         
-        /* Mobile menu */
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
@@ -219,9 +266,9 @@
             transform: translateX(0);
         }
         
-        /* Photo gallery hover effect */
         .gallery-item {
             overflow: hidden;
+            position: relative;
         }
         
         .gallery-item img {
@@ -232,15 +279,28 @@
             transform: scale(1.1);
         }
         
-        /* Loading screen */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0a0a0a;
+            background: #050505;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
@@ -255,14 +315,175 @@
         .loader {
             width: 60px;
             height: 60px;
-            border: 3px solid #222;
+            border: 3px solid #1a1a1a;
             border-top-color: #fbbf24;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
         
+        .loading-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fbbf24;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .payout-swiper {
+            padding: 20px 0 60px 0;
+        }
+        
+        .payout-swiper .swiper-slide {
+            width: 280px;
+            height: auto;
+        }
+        
+        .payout-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #1a1a1a, #111);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .payout-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+        
+        .payout-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .payout-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .swiper-pagination-bullet {
+            background: #333;
+            opacity: 1;
+            width: 10px;
+            height: 10px;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            width: 30px;
+            border-radius: 5px;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fbbf24;
+            background: rgba(26, 26, 26, 0.9);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(251, 191, 36, 0.2);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+        
+        .glow-border {
+            position: relative;
+        }
+        
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #fbbf24, transparent, #d97706, transparent, #fbbf24);
+            background-size: 400% 400%;
+            border-radius: inherit;
+            z-index: -1;
+            animation: glow-rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-border:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes glow-rotate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+        
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .stat-card:hover::before {
+            left: 100%;
+        }
+        
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
@@ -270,6 +491,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
         <div class="loader"></div>
+        <div class="loading-text">Creed Aldo</div>
     </div>
     
     <!-- Noise Overlay -->
@@ -279,26 +501,27 @@
     <div id="canvas-container"></div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-950/90 backdrop-blur-xl border-b border-gold-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
-                <!-- Logo -->
                 <a href="#" class="flex items-center space-x-2">
-                    <span class="text-xl md:text-2xl font-bold gradient-text font-display">CREED ALDO</span>
+                    <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center">
+                        <span class="text-dark-900 font-bold text-lg">CA</span>
+                    </div>
+                    <span class="text-xl md:text-2xl font-bold gradient-text font-display hidden sm:block">CREED ALDO</span>
                 </a>
                 
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-gray-300 hover:text-gold-400 transition-colors line-animation">About</a>
-                    <a href="#achievements" class="text-gray-300 hover:text-gold-400 transition-colors line-animation">Achievements</a>
+                    <a href="#payouts" class="text-gray-300 hover:text-gold-400 transition-colors line-animation">Payouts</a>
                     <a href="#gallery" class="text-gray-300 hover:text-gold-400 transition-colors line-animation">Gallery</a>
-                    <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-semibold rounded-full hover:from-gold-400 hover:to-gold-500 transition-all transform hover:scale-105">
-                        Connect
+                    <a href="#contact" class="group relative px-6 py-2.5 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-semibold rounded-full overflow-hidden">
+                        <span class="relative z-10">Connect</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                     </a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white hover:text-gold-400 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -306,195 +529,194 @@
             </div>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-dark-800 z-50 p-6 md:hidden">
-            <button id="close-menu" class="absolute top-4 right-4 text-white">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-dark-900/95 backdrop-blur-xl z-50 p-6 md:hidden border-l border-gold-500/10">
+            <button id="close-menu" class="absolute top-4 right-4 text-white hover:text-gold-400 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
-            <div class="flex flex-col space-y-6 mt-12">
-                <a href="#about" class="text-gray-300 hover:text-gold-400 transition-colors text-lg">About</a>
-                <a href="#achievements" class="text-gray-300 hover:text-gold-400 transition-colors text-lg">Achievements</a>
-                <a href="#gallery" class="text-gray-300 hover:text-gold-400 transition-colors text-lg">Gallery</a>
-                <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-semibold rounded-full text-center">
-                    Connect
-                </a>
+            <div class="mt-16">
+                <div class="flex items-center space-x-3 mb-8 pb-6 border-b border-white/10">
+                    <div class="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center">
+                        <span class="text-dark-900 font-bold text-xl">CA</span>
+                    </div>
+                    <span class="text-xl font-bold gradient-text font-display">CREED ALDO</span>
+                </div>
+                <div class="flex flex-col space-y-4">
+                    <a href="#about" class="text-gray-300 hover:text-gold-400 transition-colors text-lg py-2">About</a>
+                    <a href="#payouts" class="text-gray-300 hover:text-gold-400 transition-colors text-lg py-2">Payouts</a>
+                    <a href="#gallery" class="text-gray-300 hover:text-gold-400 transition-colors text-lg py-2">Gallery</a>
+                    <a href="#contact" class="mt-4 px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-semibold rounded-full text-center">Connect</a>
+                </div>
             </div>
         </div>
     </nav>
     
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <!-- Background gradient -->
-        <div class="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950"></div>
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(251,191,36,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(251,191,36,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <!-- Text Content -->
                 <div class="text-center lg:text-left order-2 lg:order-1">
-                    <div class="inline-block mb-4 md:mb-6">
-                        <span class="px-4 py-2 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-medium">
-                            🏆 Professional Trader
+                    <div class="inline-flex items-center gap-2 mb-4 md:mb-6">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-gold-500"></span>
                         </span>
+                        <span class="px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-medium">Professional Trader</span>
                     </div>
                     
                     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 md:mb-6 leading-tight">
                         <span class="block text-white">FINANCIAL</span>
-                        <span class="block gradient-text glow-text">FREEDOM</span>
+                        <span class="block gradient-text-animated glow-text">FREEDOM</span>
                         <span class="block text-white">IS A SKILL</span>
                     </h1>
                     
-                    <p class="text-gray-400 text-base md:text-lg lg:text-xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0">
-                        I'll teach you the mindset and strategies that transformed me from a regular guy 
-                        to a professional trader with proven results.
+                    <p class="text-gray-400 text-base md:text-lg lg:text-xl mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        I'll teach you the mindset and strategies that transformed me from a regular guy to a professional trader with <span class="text-gold-400 font-semibold">proven results</span>.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#achievements" class="group px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold rounded-full hover:from-gold-400 hover:to-gold-500 transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
-                            <span>View My Results</span>
+                        <a href="#payouts" class="group px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold rounded-full hover:shadow-lg hover:shadow-gold-500/30 transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+                            <span>View My Payouts</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
                         </a>
-                        <a href="#contact" class="px-8 py-4 border-2 border-gold-500/50 text-gold-400 font-bold rounded-full hover:bg-gold-500/10 transition-all flex items-center justify-center space-x-2">
+                        <a href="#contact" class="px-8 py-4 border-2 border-gold-500/50 text-gold-400 font-bold rounded-full hover:bg-gold-500/10 hover:border-gold-400 transition-all flex items-center justify-center space-x-2 backdrop-blur-sm">
                             <span>Get In Touch</span>
                         </a>
                     </div>
                     
-                    <!-- Stats -->
                     <div class="grid grid-cols-3 gap-4 md:gap-8 mt-10 md:mt-12 pt-8 md:pt-10 border-t border-white/10">
-                        <div class="text-center lg:text-left">
+                        <div class="stat-card text-center lg:text-left p-3 rounded-xl">
                             <div class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text stat-counter" data-target="23">0</div>
                             <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mt-1">Years Old</div>
                         </div>
-                        <div class="text-center lg:text-left">
-                            <div class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text stat-counter" data-target="50">0</div>
-                            <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mt-1">Payouts+</div>
+                        <div class="stat-card text-center lg:text-left p-3 rounded-xl">
+                            <div class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text stat-counter" data-target="28">0</div>
+                            <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mt-1">Payouts</div>
                         </div>
-                        <div class="text-center lg:text-left">
+                        <div class="stat-card text-center lg:text-left p-3 rounded-xl">
                             <div class="text-2xl md:text-3xl lg:text-4xl font-bold gradient-text">BBA</div>
                             <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mt-1">Degree</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Hero Image -->
                 <div class="order-1 lg:order-2 flex justify-center">
                     <div class="relative">
                         <div class="hero-image rounded-2xl overflow-hidden animate-float">
                             <img src="assets/images/photo1.jpg" alt="Creed Aldo" class="w-64 sm:w-72 md:w-80 lg:w-96 h-auto object-cover rounded-2xl">
                         </div>
-                        <!-- Floating elements -->
-                        <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-dark-700 p-3 md:p-4 rounded-xl border border-gold-500/30 animate-pulse-gold">
+                        <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-dark-700/90 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-gold-500/30 animate-pulse-gold">
                             <span class="text-xl md:text-2xl">💰</span>
                         </div>
-                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-dark-700 p-3 md:p-4 rounded-xl border border-gold-500/30">
+                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-dark-700/90 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-gold-500/30">
                             <span class="text-xl md:text-2xl">📈</span>
+                        </div>
+                        <div class="absolute top-1/2 -right-8 md:-right-12 bg-dark-700/90 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-gold-500/30 hidden lg:block">
+                            <span class="text-xl md:text-2xl">🏆</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-gold-400/60 text-xs uppercase tracking-widest">Scroll</span>
+                <div class="w-6 h-10 border-2 border-gold-400/30 rounded-full flex justify-center pt-2">
+                    <div class="w-1.5 h-3 bg-gold-400 rounded-full animate-bounce"></div>
+                </div>
+            </div>
         </div>
     </section>
     
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
+    <!-- Marquee Banner -->
+    <div class="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 py-3 overflow-hidden">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="inline-flex items-center space-x-8 text-dark-900 font-bold text-sm md:text-base">
+                    <span>🏆 PROFESSIONAL TRADER</span><span>•</span>
+                    <span>💪 FITNESS INFLUENCER</span><span>•</span>
+                    <span>📚 BBA GRADUATE</span><span>•</span>
+                    <span>💰 28+ VERIFIED PAYOUTS</span><span>•</span>
+                    <span>🎯 MINDSET COACH</span><span>•</span>
+                    <span>🏆 PROFESSIONAL TRADER</span><span>•</span>
+                    <span>💪 FITNESS INFLUENCER</span><span>•</span>
+                    <span>📚 BBA GRADUATE</span><span>•</span>
+                    <span>💰 28+ VERIFIED PAYOUTS</span><span>•</span>
+                    <span>🎯 MINDSET COACH</span><span>•</span>
+                </span>
+            </div>
+        </div>
+    </div>
     
     <!-- About Section -->
     <section id="about" class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-dark-900 to-dark-800"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-950 to-dark-900"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                <!-- Image -->
                 <div class="relative">
                     <div class="aspect-[4/5] rounded-2xl overflow-hidden glow-gold">
                         <img src="assets/images/photo2.jpg" alt="Creed Aldo Lifestyle" class="w-full h-full object-cover image-reveal">
                     </div>
-                    <!-- Overlay card -->
-                    <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 bg-dark-700 p-4 md:p-6 rounded-2xl border border-gold-500/30 backdrop-blur-sm max-w-xs">
+                    <div class="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 glass-card p-4 md:p-6 rounded-2xl max-w-xs">
                         <div class="flex items-center space-x-3 md:space-x-4">
-                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gold-500 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 md:w-6 md:h-6 text-dark-900" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 md:w-7 md:h-7 text-dark-900" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0z"></path>
                                 </svg>
                             </div>
                             <div>
                                 <div class="text-white font-semibold text-sm md:text-base">Rangsit University</div>
-                                <div class="text-gray-400 text-xs md:text-sm">BBA Graduate</div>
+                                <div class="text-gold-400 text-xs md:text-sm font-medium">BBA Graduate 🎓</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Content -->
                 <div>
-                    <span class="text-gold-400 font-semibold uppercase tracking-wider text-sm">About Me</span>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
-                        From <span class="gradient-text">Student</span> to 
-                        <span class="gradient-text">Professional Trader</span>
+                    <span class="inline-block px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-semibold uppercase tracking-wider mb-4">About Me</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-2 mb-6">
+                        From <span class="gradient-text">Student</span> to <span class="gradient-text">Professional Trader</span>
                     </h2>
                     
-                    <div class="space-y-4 md:space-y-6 text-gray-400 text-base md:text-lg">
-                        <p>
-                            I'm <span class="text-white font-semibold">Creed Aldo</span>, a 23-year-old professional trader 
-                            with a Bachelor of Business Administration from 
-                            <span class="text-gold-400">Rangsit University</span>, one of Thailand's top private universities.
-                        </p>
-                        <p>
-                            My journey in trading started during my university years. While others were 
-                            partying, I was studying charts, analyzing markets, and building my trading skills. 
-                            Today, I have multiple payout proofs that speak for themselves.
-                        </p>
-                        <p>
-                            Beyond trading, I'm passionate about fitness and living a disciplined lifestyle. 
-                            I create educational content about personal finance, self-improvement, and the 
-                            mindset needed to achieve financial freedom.
-                        </p>
+                    <div class="space-y-4 md:space-y-6 text-gray-400 text-base md:text-lg leading-relaxed">
+                        <p>I'm <span class="text-white font-semibold">Creed Aldo</span>, a 23-year-old professional trader with a Bachelor of Business Administration from <span class="text-gold-400 font-medium">Rangsit University</span>, one of Thailand's top private universities.</p>
+                        <p>My journey in trading started during my university years. While others were partying, I was studying charts, analyzing markets, and building my trading skills. Today, I have <span class="text-gold-400 font-semibold">28+ payout proofs</span> that speak for themselves.</p>
+                        <p>Beyond trading, I'm passionate about fitness and living a disciplined lifestyle. I create educational content about personal finance, self-improvement, and the mindset needed to achieve financial freedom.</p>
                     </div>
                     
-                    <!-- Features -->
                     <div class="grid grid-cols-2 gap-4 mt-8">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-dark-800/50 border border-white/5">
+                            <div class="w-10 h-10 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="text-white text-sm md:text-base">Verified Payouts</span>
+                            <span class="text-white text-sm md:text-base font-medium">Verified Payouts</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-dark-800/50 border border-white/5">
+                            <div class="w-10 h-10 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="text-white text-sm md:text-base">BBA Degree</span>
+                            <span class="text-white text-sm md:text-base font-medium">BBA Degree</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-dark-800/50 border border-white/5">
+                            <div class="w-10 h-10 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="text-white text-sm md:text-base">Fitness Focused</span>
+                            <span class="text-white text-sm md:text-base font-medium">Fitness Focused</span>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center">
-                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-dark-800/50 border border-white/5">
+                            <div class="w-10 h-10 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             </div>
-                            <span class="text-white text-sm md:text-base">Content Creator</span>
+                            <span class="text-white text-sm md:text-base font-medium">Content Creator</span>
                         </div>
                     </div>
                 </div>
@@ -502,88 +724,132 @@
         </div>
     </section>
     
-    <!-- Section Divider -->
     <div class="section-divider"></div>
     
-    <!-- Achievements Section -->
-    <section id="achievements" class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-dark-800"></div>
+    <!-- Payouts Section -->
+    <section id="payouts" class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-dark-900"></div>
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent"></div>
+        
+        <div class="relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <span class="inline-block px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-semibold uppercase tracking-wider mb-4">Proof of Success</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-2">Verified <span class="gradient-text">Payout Proofs</span></h2>
+                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">Real results from real trading. Every payout is a testament to discipline, strategy, and the mindset of a winner.</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-6 mt-8">
+                        <div class="glass-card px-6 py-4 rounded-xl">
+                            <div class="text-3xl font-bold gradient-text">28+</div>
+                            <div class="text-gray-400 text-sm">Total Payouts</div>
+                        </div>
+                        <div class="glass-card px-6 py-4 rounded-xl">
+                            <div class="text-3xl font-bold gradient-text">100%</div>
+                            <div class="text-gray-400 text-sm">Verified</div>
+                        </div>
+                        <div class="glass-card px-6 py-4 rounded-xl">
+                            <div class="text-3xl font-bold gradient-text">2024-26</div>
+                            <div class="text-gray-400 text-sm">Track Record</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="swiper payout-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout1.jpg" alt="Payout 1" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout2.jpg" alt="Payout 2" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout3.jpg" alt="Payout 3" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout4.jpg" alt="Payout 4" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout5.jpg" alt="Payout 5" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout6.jpg" alt="Payout 6" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout7.jpg" alt="Payout 7" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout8.jpg" alt="Payout 8" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout9.jpg" alt="Payout 9" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout10.jpg" alt="Payout 10" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout11.jpg" alt="Payout 11" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout12.jpg" alt="Payout 12" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout13.jpg" alt="Payout 13" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout14.jpg" alt="Payout 14" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout15.jpg" alt="Payout 15" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout16.jpg" alt="Payout 16" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout17.jpg" alt="Payout 17" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout18.jpg" alt="Payout 18" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout19.jpg" alt="Payout 19" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout20.jpg" alt="Payout 20" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout21.jpg" alt="Payout 21" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout22.jpg" alt="Payout 22" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout23.jpg" alt="Payout 23" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout24.jpg" alt="Payout 24" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout25.jpg" alt="Payout 25" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout26.jpg" alt="Payout 26" loading="lazy"></div></div>
+                    <div class="swiper-slide"><div class="payout-card"><div class="payout-badge">Verified ✓</div><img src="payouts/payout27.jpg" alt="Payout 27" loading="lazy"></div></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            
+            <div class="text-center mt-4 md:hidden">
+                <span class="text-gray-500 text-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path></svg>
+                    Swipe to see more
+                </span>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- What I Teach Section -->
+    <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-dark-950"></div>
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 md:mb-16">
-                <span class="text-gold-400 font-semibold uppercase tracking-wider text-sm">Proof of Success</span>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-4">
-                    My <span class="gradient-text">Achievements</span>
-                </h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Real results from real trading. Every payout is a testament to discipline, 
-                    strategy, and the mindset of a winner.
-                </p>
+                <span class="inline-block px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-semibold uppercase tracking-wider mb-4">Education</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-2">What I <span class="gradient-text">Teach</span></h2>
             </div>
             
-            <!-- Achievement Cards -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Card 1 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 md:p-8 border border-white/5 hover:border-gold-500/30">
-                    <div class="w-14 h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-dark-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Multiple Payouts</h3>
-                    <p class="text-gray-400">
-                        Consistent profitable trading with verified payout proofs. 
-                        Building wealth one trade at a time.
-                    </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-4xl">📈</span></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Trading</h3>
+                    <p class="text-gray-400 text-sm">Master the markets with proven strategies and technical analysis</p>
                 </div>
-                
-                <!-- Card 2 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 md:p-8 border border-white/5 hover:border-gold-500/30">
-                    <div class="w-14 h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-dark-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3">BBA from RSU</h3>
-                    <p class="text-gray-400">
-                        Bachelor of Business Administration from Rangsit University, 
-                        one of Thailand's top-ranked private institutions.
-                    </p>
+                <div class="card-hover rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-4xl">💪</span></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Fitness</h3>
+                    <p class="text-gray-400 text-sm">Build discipline through physical excellence and consistency</p>
                 </div>
-                
-                <!-- Card 3 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 md:p-8 border border-white/5 hover:border-gold-500/30 sm:col-span-2 lg:col-span-1">
-                    <div class="w-14 h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-dark-900" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Content Creator</h3>
-                    <p class="text-gray-400">
-                        Educating thousands on personal finance, trading strategies, 
-                        and the mindset needed for success.
-                    </p>
+                <div class="card-hover rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-4xl">🧠</span></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Mindset</h3>
+                    <p class="text-gray-400 text-sm">Develop the winning mentality of successful entrepreneurs</p>
+                </div>
+                <div class="card-hover rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center group">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gold-500/20 to-gold-600/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-4xl">💰</span></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Personal Finance</h3>
+                    <p class="text-gray-400 text-sm">Build wealth systematically and secure your future</p>
                 </div>
             </div>
             
-            <!-- Quote -->
-            <div class="mt-12 md:mt-16 text-center">
-                <div class="inline-block bg-dark-700/50 border border-gold-500/20 rounded-2xl p-6 md:p-8 max-w-3xl">
-                    <svg class="w-10 h-10 text-gold-500/30 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-                    <p class="text-lg md:text-xl lg:text-2xl text-white font-medium italic">
-                        "Success is not given. It's earned through discipline, sacrifice, and relentless action. 
-                        Every day is a chance to become the best version of yourself."
-                    </p>
-                    <div class="mt-4 text-gold-400 font-semibold">— Creed Aldo</div>
+            <div class="mt-16 text-center">
+                <div class="inline-block glass-card rounded-2xl p-8 md:p-10 max-w-3xl">
+                    <svg class="w-12 h-12 text-gold-500/30 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    <p class="text-xl md:text-2xl lg:text-3xl text-white font-medium italic leading-relaxed">"Success is not given. It's earned through discipline, sacrifice, and relentless action. Every day is a chance to become the best version of yourself."</p>
+                    <div class="mt-6 flex items-center justify-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center"><span class="text-dark-900 font-bold">CA</span></div>
+                        <div class="text-left">
+                            <div class="text-gold-400 font-semibold">Creed Aldo</div>
+                            <div class="text-gray-500 text-sm">Professional Trader</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Section Divider -->
     <div class="section-divider"></div>
     
     <!-- Gallery Section -->
@@ -592,133 +858,56 @@
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 md:mb-16">
-                <span class="text-gold-400 font-semibold uppercase tracking-wider text-sm">Visual Journey</span>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-4">
-                    The <span class="gradient-text">Lifestyle</span>
-                </h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Discipline in the gym. Precision in the markets. Excellence in everything.
-                </p>
+                <span class="inline-block px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-semibold uppercase tracking-wider mb-4">Visual Journey</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-2">The <span class="gradient-text">Lifestyle</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">Discipline in the gym. Precision in the markets. Excellence in everything.</p>
             </div>
             
-            <!-- Gallery Grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5]">
-                    <img src="assets/images/photo3.jpg" alt="Creed Aldo" class="w-full h-full object-cover">
-                </div>
-                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5]">
-                    <img src="assets/images/photo4.jpg" alt="Creed Aldo" class="w-full h-full object-cover">
-                </div>
-                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5] col-span-2 md:col-span-1">
-                    <img src="assets/images/photo5.jpg" alt="Creed Aldo" class="w-full h-full object-cover">
-                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5] glow-border"><img src="assets/images/photo3.jpg" alt="Creed Aldo" class="w-full h-full object-cover"></div>
+                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5] glow-border"><img src="assets/images/photo4.jpg" alt="Creed Aldo" class="w-full h-full object-cover"></div>
+                <div class="gallery-item rounded-2xl overflow-hidden aspect-[4/5] col-span-2 md:col-span-1 glow-border"><img src="assets/images/photo5.jpg" alt="Creed Aldo" class="w-full h-full object-cover"></div>
             </div>
             
-            <!-- Call to action -->
             <div class="mt-12 text-center">
                 <p class="text-gray-400 mb-6">Follow my journey on social media</p>
                 <div class="flex justify-center space-x-4">
-                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-dark-900 transition-all group">
-                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
+                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-600 transition-all group border border-white/5 hover:border-transparent">
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-dark-900 transition-all group">
-                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                        </svg>
+                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-600 transition-all group border border-white/5 hover:border-transparent">
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-dark-900 transition-all group">
-                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
+                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-600 transition-all group border border-white/5 hover:border-transparent">
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-dark-900 transition-all group">
-                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                        </svg>
+                    <a href="#" class="w-12 h-12 bg-dark-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-gold-500 hover:to-gold-600 transition-all group border border-white/5 hover:border-transparent">
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-dark-900" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                     </a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-    
-    <!-- What I Teach Section -->
-    <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-dark-800"></div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <span class="text-gold-400 font-semibold uppercase tracking-wider text-sm">Education</span>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-4">
-                    What I <span class="gradient-text">Teach</span>
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Item 1 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center">
-                    <div class="text-4xl mb-4">📈</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Trading</h3>
-                    <p class="text-gray-400 text-sm">Master the markets with proven strategies</p>
-                </div>
-                
-                <!-- Item 2 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center">
-                    <div class="text-4xl mb-4">💪</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Fitness</h3>
-                    <p class="text-gray-400 text-sm">Build discipline through physical excellence</p>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center">
-                    <div class="text-4xl mb-4">🧠</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Mindset</h3>
-                    <p class="text-gray-400 text-sm">Develop the winning mentality</p>
-                </div>
-                
-                <!-- Item 4 -->
-                <div class="card-hover bg-dark-700 rounded-2xl p-6 border border-white/5 hover:border-gold-500/30 text-center">
-                    <div class="text-4xl mb-4">💰</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Personal Finance</h3>
-                    <p class="text-gray-400 text-sm">Build wealth systematically</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Section Divider -->
     <div class="section-divider"></div>
     
     <!-- Contact Section -->
     <section id="contact" class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-dark-900 to-dark-800"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-950 to-dark-900"></div>
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gold-500/10 via-transparent to-transparent"></div>
         
         <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-gold-400 font-semibold uppercase tracking-wider text-sm">Ready to Level Up?</span>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-4 mb-6">
-                Let's <span class="gradient-text">Connect</span>
-            </h2>
-            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-                Ready to take control of your financial future? Reach out and let's discuss 
-                how you can start your journey to success.
-            </p>
+            <span class="inline-block px-4 py-1.5 bg-gold-500/10 border border-gold-500/30 rounded-full text-gold-400 text-sm font-semibold uppercase tracking-wider mb-4">Ready to Level Up?</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold mt-2 mb-6">Let's <span class="gradient-text">Connect</span></h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">Ready to take control of your financial future? Reach out and let's discuss how you can start your journey to success.</p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="mailto:contact@creedaldo.me" class="group px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold rounded-full hover:from-gold-400 hover:to-gold-500 transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
+                <a href="mailto:contact@creedaldo.me" class="group px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold rounded-full hover:shadow-lg hover:shadow-gold-500/30 transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     <span>Email Me</span>
                 </a>
-                <a href="#" class="px-8 py-4 border-2 border-gold-500/50 text-gold-400 font-bold rounded-full hover:bg-gold-500/10 transition-all flex items-center justify-center space-x-2">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                    </svg>
+                <a href="#" class="px-8 py-4 border-2 border-gold-500/50 text-gold-400 font-bold rounded-full hover:bg-gold-500/10 hover:border-gold-400 transition-all flex items-center justify-center space-x-2 backdrop-blur-sm">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                     <span>Telegram</span>
                 </a>
             </div>
@@ -726,11 +915,12 @@
     </section>
     
     <!-- Footer -->
-    <footer class="relative py-8 border-t border-white/5">
+    <footer class="relative py-8 border-t border-gold-500/10 bg-dark-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-gray-500 text-sm">
-                    © 2026 Creed Aldo. All rights reserved.
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center"><span class="text-dark-900 font-bold text-sm">CA</span></div>
+                    <span class="text-gray-500 text-sm">© 2026 Creed Aldo. All rights reserved.</span>
                 </div>
                 <div class="flex items-center space-x-6">
                     <a href="#" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">Privacy</a>
@@ -741,34 +931,35 @@
     </footer>
     
     <script>
-        // Loading screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loading-screen').classList.add('hidden');
-            }, 1000);
-        });
+        window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loading-screen').classList.add('hidden'); }, 1500); });
         
-        // Mobile menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenu = document.getElementById('close-menu');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); });
+        closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); }); });
+        
+        const payoutSwiper = new Swiper('.payout-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            centeredSlides: false,
+            grabCursor: true,
+            loop: true,
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: {
+                320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: true },
+                480: { slidesPerView: 1.5, spaceBetween: 20 },
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                768: { slidesPerView: 2.5, spaceBetween: 25 },
+                1024: { slidesPerView: 3.5, spaceBetween: 30 },
+                1280: { slidesPerView: 4, spaceBetween: 30 }
+            }
         });
         
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-        
-        // Close menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Three.js Background Animation
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -777,136 +968,59 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         document.getElementById('canvas-container').appendChild(renderer.domElement);
         
-        // Create particles
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
+        const particlesCount = 3000;
         const posArray = new Float32Array(particlesCount * 3);
+        const colorArray = new Float32Array(particlesCount * 3);
         
-        for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
+        for(let i = 0; i < particlesCount * 3; i += 3) {
+            posArray[i] = (Math.random() - 0.5) * 15;
+            posArray[i + 1] = (Math.random() - 0.5) * 15;
+            posArray[i + 2] = (Math.random() - 0.5) * 15;
+            colorArray[i] = 0.9 + Math.random() * 0.1;
+            colorArray[i + 1] = 0.7 + Math.random() * 0.2;
+            colorArray[i + 2] = 0.1 + Math.random() * 0.2;
         }
         
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
         
-        // Gold particles material
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.005,
-            color: 0xfbbf24,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-        
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.008, vertexColors: true, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
+        camera.position.z = 5;
         
-        camera.position.z = 3;
+        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = -(e.clientY / window.innerHeight) * 2 + 1; });
         
-        // Mouse movement effect
-        let mouseX = 0;
-        let mouseY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-        
-        // Animation loop
         const animate = () => {
             requestAnimationFrame(animate);
-            
-            particlesMesh.rotation.x += 0.0003;
-            particlesMesh.rotation.y += 0.0005;
-            
-            // Mouse follow effect
-            particlesMesh.rotation.x += mouseY * 0.0005;
-            particlesMesh.rotation.y += mouseX * 0.0005;
-            
+            targetX += (mouseX - targetX) * 0.02;
+            targetY += (mouseY - targetY) * 0.02;
+            particlesMesh.rotation.x += 0.0002;
+            particlesMesh.rotation.y += 0.0003;
+            particlesMesh.rotation.x += targetY * 0.0003;
+            particlesMesh.rotation.y += targetX * 0.0003;
             renderer.render(scene, camera);
         };
-        
         animate();
         
-        // Resize handler
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
         
-        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         
-        // Fade in elements on scroll
-        gsap.utils.toArray('.card-hover').forEach(card => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power2.out'
-            });
-        });
+        gsap.utils.toArray('.card-hover').forEach(card => { gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }, y: 60, opacity: 0, duration: 0.8, ease: 'power3.out' }); });
+        gsap.utils.toArray('.image-reveal').forEach(img => { ScrollTrigger.create({ trigger: img, start: 'top 80%', onEnter: () => img.classList.add('revealed') }); });
         
-        // Image reveal animation
-        gsap.utils.toArray('.image-reveal').forEach(img => {
-            ScrollTrigger.create({
-                trigger: img,
-                start: 'top 80%',
-                onEnter: () => img.classList.add('revealed')
-            });
-        });
-        
-        // Counter animation
-        const counters = document.querySelectorAll('.stat-counter');
-        counters.forEach(counter => {
+        document.querySelectorAll('.stat-counter').forEach(counter => {
             const target = counter.getAttribute('data-target');
-            if (target) {
-                gsap.to(counter, {
-                    scrollTrigger: {
-                        trigger: counter,
-                        start: 'top 85%'
-                    },
-                    textContent: target,
-                    duration: 2,
-                    snap: { textContent: 1 },
-                    ease: 'power1.out'
-                });
-            }
+            if (target) { gsap.to(counter, { scrollTrigger: { trigger: counter, start: 'top 85%' }, textContent: target, duration: 2.5, snap: { textContent: 1 }, ease: 'power2.out' }); }
         });
         
-        // Gallery hover effect
-        gsap.utils.toArray('.gallery-item').forEach(item => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                scale: 0.9,
-                opacity: 0,
-                duration: 0.6,
-                ease: 'power2.out'
-            });
-        });
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => { gsap.from(item, { scrollTrigger: { trigger: item, start: 'top 85%', toggleActions: 'play none none reverse' }, scale: 0.8, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out' }); });
+        gsap.utils.toArray('.glass-card').forEach(card => { gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }, y: 40, opacity: 0, duration: 0.7, ease: 'power2.out' }); });
         
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
     </script>
 </body>
 </html>
